@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeVerse - Anime Movies</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #10101c;
+            color: white;
+        }
+
+        /* Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 6%;
+            background: #191929;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo span {
+            color: #ff4fa3;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ff4fa3;
+        }
+
+        .search input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .search button {
+            padding: 10px 15px;
+            background: #ff4fa3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            padding: 60px 8%;
+            background:
+            linear-gradient(90deg, #10101c 15%, rgba(16,16,28,.65)),
+            url("https://images.unsplash.com/photo-1578632767115-351597cf2477")
+            center/cover;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-content small {
+            color: #ff4fa3;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin: 20px 0;
+        }
+
+        .hero h1 span {
+            color: #ff4fa3;
+        }
+
+        .hero p {
+            color: #ddd;
+            line-height: 1.7;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 25px;
+            background: linear-gradient(45deg, #ff4fa3, #8b5cf6);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        /* Movie Section */
+        .movies {
+            padding: 60px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #aaa;
+        }
+
+        .movie-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 25px;
+        }
+
+        .movie-card {
+            background: #202033;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px #ff4fa344;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .movie-info {
+            padding: 18px;
+        }
+
+        .movie-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .movie-info p {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .rating {
+            color: #ffc107;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        /* Genres */
+        .genres {
+            padding: 50px 7%;
+            text-align: center;
+            background: #191929;
+        }
+
+        .genres h2 {
+            font-size: 32px;
+        }
+
+        .genre-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .genre-container div {
+            background: #29293d;
+            padding: 15px 25px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .genre-container div:hover {
+            background: #ff4fa3;
+        }
+
+        /* About */
+        .about {
+            text-align: center;
+            padding: 60px 10%;
+        }
+
+        .about h2 {
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            color: #bbb;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: #191929;
+            text-align: center;
+            padding: 30px;
+            color: #aaa;
+            line-height: 2;
+        }
+
+        footer span {
+            color: #ff4fa3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            .movie-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .movie-card img {
+                height: 230px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .movie-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Anime<span>Verse</span></div>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#movies">Movies</a>
+            <a href="#genres">Genres</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <div class="search">
+            <input type="text" placeholder="Search anime...">
+            <button>Search</button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <small>WELCOME TO ANIMEVERSE</small>
+
+            <h1>Explore The World Of <span>Anime</span></h1>
+
+            <p>
+                Discover amazing anime movies, unforgettable stories,
+                legendary characters and beautiful adventures.
+            </p>
+
+            <a href="#movies" class="hero-btn">Explore Movies →</a>
+        </div>
+    </section>
+
+    <!-- Movies -->
+    <section class="movies" id="movies">
+
+        <div class="section-title">
+            <h2>Popular Anime Movies</h2>
+            <p>Discover the most loved anime movies</p>
+        </div>
+
+        <div class="movie-container">
+
+            <div class="movie-card">
+                <img src="https://image.tmdb.org/t/p/w500/8GJsy7w7frGquw1cy9jasOGNNI1.jpg" alt="Your Name">
+                <div class="movie-info">
+                    <h3>Your Name</h3>
+                    <p>Romance | Fantasy</p>
+                    <div class="rating">★ 8.4 / 10</div>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src="https://image.tmdb.org/t/p/w500/2CAL2433ZeIihfX1Hb2139CX0pW.jpg" alt="Spirited Away">
+                <div class="movie-info">
+                    <h3>Spirited Away</h3>
+                    <p>Adventure | Fantasy</p>
+                    <div class="rating">★ 8.6 / 10</div>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src="https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg" alt="Weathering With You">
+                <div class="movie-info">
+                    <h3>Weathering With You</h3>
+                    <p>Romance | Drama</p>
+                    <div class="rating">★ 7.5 / 10</div>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src="https://image.tmdb.org/t/p/w500/7fn624j5lj3xTme2SgiLCeuedmO.jpg" alt="A Silent Voice">
+                <div class="movie-info">
+                    <h3>A Silent Voice</h3>
+                    <p>Drama | Romance</p>
+                    <div class="rating">★ 8.1 / 10</div>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src="https://image.tmdb.org/t/p/w500/6izwz7rsy95ARzTR3poZ8H6c5pp.jpg" alt="Princess Mononoke">
+                <div class="movie-info">
+                    <h3>Princess Mononoke</h3>
+                    <p>Adventure | Fantasy</p>
+                    <div class="rating">★ 8.3 / 10</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Genres -->
+    <section class="genres" id="genres">
+        <h2>Explore Genres</h2>
+
+        <div class="genre-container">
+            <div>⚔️ Action</div>
+            <div>❤️ Romance</div>
+            <div>✨ Fantasy</div>
+            <div>😂 Comedy</div>
+            <div>👻 Horror</div>
+            <div>🚀 Sci-Fi</div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <h2>About AnimeVerse</h2>
+
+        <p>
+            AnimeVerse is a destination for anime lovers to explore
+            beautiful movies, discover new stories and celebrate
+            the amazing world of Japanese animation.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Anime<span>Verse</span></h2>
+        <p>Explore. Discover. Experience Anime.</p>
+        <p>© 2026 AnimeVerse. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
+
+</body>
+</html>
